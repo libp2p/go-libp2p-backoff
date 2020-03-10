@@ -4,10 +4,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/libp2p/go-libp2p-backoff/policy"
 	"github.com/libp2p/go-libp2p-core/backoff"
 )
 
-func NewBackoffTreeTimer(parent backoff.BackoffTimer, policy BackoffPolicy) *BackoffTreeTimer {
+func NewBackoffTreeTimer(parent backoff.BackoffTimer, policy policy.BackoffPolicy) *BackoffTreeTimer {
 	return &BackoffTreeTimer{
 		parent:   parent,
 		state:    policy.NewBackoffState(),
@@ -21,10 +22,10 @@ type BackoffTreeTimer struct {
 	clk      sync.Mutex // lock for children
 	children map[string]*BackoffTreeTimer
 	slk      sync.Mutex // lock for state
-	state    BackoffState
+	state    policy.BackoffState
 }
 
-func (t *BackoffTreeTimer) Subtimer(childName string, policy BackoffPolicy) *BackoffTreeTimer {
+func (t *BackoffTreeTimer) Subtimer(childName string, policy policy.BackoffPolicy) *BackoffTreeTimer {
 	t.clk.Lock()
 	defer t.clk.Unlock()
 	if child := t.children[childName]; child != nil {

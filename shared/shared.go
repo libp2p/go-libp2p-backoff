@@ -1,22 +1,24 @@
-package tree
+package shared
 
 import (
 	"sync"
 
+	"github.com/libp2p/go-libp2p-backoff/policy"
+	"github.com/libp2p/go-libp2p-backoff/tree"
 	"github.com/libp2p/go-libp2p-core/backoff"
 	ma "github.com/multiformats/go-multiaddr"
 )
 
 // CHECKOUT: https://github.com/libp2p/go-libp2p-discovery
 
-var DefaultIPBackoffPolicy = NoBackoffPolicy{}        // TODO: use a real policy
-var DefaultTransportBackoffPolicy = NoBackoffPolicy{} // TODO: use a real policy
-var DefaultSwarmBackoffPolicy = NoBackoffPolicy{}     // TODO: use a real policy
-var DefaultProtocolBackoffPolicy = NoBackoffPolicy{}  // TODO: use a real policy
+var DefaultIPBackoffPolicy = policy.NoBackoffPolicy{}        // TODO: use a real policy
+var DefaultTransportBackoffPolicy = policy.NoBackoffPolicy{} // TODO: use a real policy
+var DefaultSwarmBackoffPolicy = policy.NoBackoffPolicy{}     // TODO: use a real policy
+var DefaultProtocolBackoffPolicy = policy.NoBackoffPolicy{}  // TODO: use a real policy
 
 func NewSharedBackoffs() backoff.SharedBackoffs {
 	b := &sharedBackoffs{
-		root: NewBackoffTreeTimer(nil, NoBackoffPolicy{}),
+		root: tree.NewBackoffTreeTimer(nil, policy.NoBackoffPolicy{}),
 	}
 	b.root.StartGC()
 	return b
@@ -24,7 +26,7 @@ func NewSharedBackoffs() backoff.SharedBackoffs {
 
 type sharedBackoffs struct {
 	rlk  sync.Mutex
-	root *BackoffTreeTimer
+	root *tree.BackoffTreeTimer
 }
 
 func (sh *sharedBackoffs) IP(addr ma.Multiaddr) backoff.BackoffTimer {

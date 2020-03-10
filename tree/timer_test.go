@@ -3,11 +3,13 @@ package tree
 import (
 	"testing"
 	"time"
+
+	"github.com/libp2p/go-libp2p-backoff/policy"
 )
 
 type TestBackoffPolicy struct{}
 
-func (TestBackoffPolicy) NewBackoffState() BackoffState {
+func (TestBackoffPolicy) NewBackoffState() policy.BackoffState {
 	return &testBackoffState{}
 }
 
