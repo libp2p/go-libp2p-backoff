@@ -2,15 +2,16 @@ package policy
 
 import "time"
 
-// BackoffPolicy is a factory for backoff policies of a given type.
+// BackoffPolicy is a factory for backoff strategies of a given type.
+// A strategy is the state and arithmetic logic of a timer.
 type BackoffPolicy interface {
 	NewBackoffState() BackoffState
 }
 
-// BackoffState implements the runtime state of a specific backoff policy.
+// BackoffState implements the runtime state for a specific backoff policy.
 //
 // Implementations of BackoffState are purely concerned with the "arithmetic"
-// of computing when the respective timer should be cleared (e.g. for making new connection retries).
+// of computing when the respective timer should be cleared.
 //
 // This interface allows for the implementation of flexible backoff policies.
 // For instance, a policy could treat a burst of backoffs as a single one.
