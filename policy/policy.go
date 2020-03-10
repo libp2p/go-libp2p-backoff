@@ -14,6 +14,9 @@ type BackoffPolicy interface {
 //
 // This interface allows for the implementation of flexible backoff policies.
 // For instance, a policy could treat a burst of backoffs as a single one.
+//
+// BackoffState is an analog of github.com/libp2p/go-libp2p-discovery.BackoffStrategy.
+// The latter, however, is not able to describe logic that adapts to bursts of backoffs.
 type BackoffState interface {
 
 	// Clear informs the policy of the current time and sets its state to cleared.
