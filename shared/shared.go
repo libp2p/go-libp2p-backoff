@@ -31,13 +31,16 @@ type sharedBackoffs struct {
 
 func (sh *sharedBackoffs) IP(addr ma.Multiaddr) backoff.BackoffTimer {
 	ipComp, _ := ma.SplitFirst(addr)
-	return sh.root.Subtimer(ipComp.String(), DefaultIPBackoffPolicy)
+	return sh.root.
+		Subtimer("dial", policy.NoBackoffPolicy{}). // this creates a namespace for dialing-related timers
+		Subtimer(ipComp.String(), DefaultIPBackoffPolicy)
 }
 
 func (sh *sharedBackoffs) Transport(addr ma.Multiaddr) backoff.BackoffTimer {
 	ipComp, rest := ma.SplitFirst(addr)
 	transportComp, _ := ma.SplitFirst(rest)
 	return sh.root.
+		Subtimer("dial", policy.NoBackoffPolicy{}). // this creates a namespace for dialing-related timers
 		Subtimer(ipComp.String(), DefaultIPBackoffPolicy).
 		Subtimer(transportComp.String(), DefaultTransportBackoffPolicy)
 }
@@ -46,6 +49,7 @@ func (sh *sharedBackoffs) Swarm(addr ma.Multiaddr) backoff.BackoffTimer {
 	ipComp, rest := ma.SplitFirst(addr)
 	transportComp, _ := ma.SplitFirst(rest)
 	return sh.root.
+		Subtimer("dial", policy.NoBackoffPolicy{}). // this creates a namespace for dialing-related timers
 		Subtimer(ipComp.String(), DefaultIPBackoffPolicy).
 		Subtimer(transportComp.String(), DefaultTransportBackoffPolicy).
 		Subtimer("swarm", DefaultSwarmBackoffPolicy)
@@ -56,6 +60,7 @@ func (sh *sharedBackoffs) Protocol(addr ma.Multiaddr) backoff.BackoffTimer {
 	transportComp, rest2 := ma.SplitFirst(rest)
 	protocolComp, _ := ma.SplitFirst(rest2)
 	return sh.root.
+		Subtimer("dial", policy.NoBackoffPolicy{}). // this creates a namespace for dialing-related timers
 		Subtimer(ipComp.String(), DefaultIPBackoffPolicy).
 		Subtimer(transportComp.String(), DefaultTransportBackoffPolicy).
 		Subtimer("swarm", DefaultSwarmBackoffPolicy).
