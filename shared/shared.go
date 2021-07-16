@@ -1,8 +1,6 @@
 package shared
 
 import (
-	"sync"
-
 	"github.com/libp2p/go-libp2p-backoff/policy"
 	"github.com/libp2p/go-libp2p-backoff/tree"
 	"github.com/libp2p/go-libp2p-core/backoff"
@@ -11,10 +9,12 @@ import (
 
 // CHECKOUT: https://github.com/libp2p/go-libp2p-discovery
 
-var DefaultIPBackoffPolicy = policy.NoBackoffPolicy{}        // TODO: use a real policy
-var DefaultTransportBackoffPolicy = policy.NoBackoffPolicy{} // TODO: use a real policy
-var DefaultSwarmBackoffPolicy = policy.NoBackoffPolicy{}     // TODO: use a real policy
-var DefaultProtocolBackoffPolicy = policy.NoBackoffPolicy{}  // TODO: use a real policy
+var (
+	DefaultIPBackoffPolicy        = policy.NoBackoffPolicy{} // TODO: use a real policy
+	DefaultTransportBackoffPolicy = policy.NoBackoffPolicy{} // TODO: use a real policy
+	DefaultSwarmBackoffPolicy     = policy.NoBackoffPolicy{} // TODO: use a real policy
+	DefaultProtocolBackoffPolicy  = policy.NoBackoffPolicy{} // TODO: use a real policy
+)
 
 func NewSharedBackoffs() backoff.SharedBackoffs {
 	b := &sharedBackoffs{
@@ -25,7 +25,6 @@ func NewSharedBackoffs() backoff.SharedBackoffs {
 }
 
 type sharedBackoffs struct {
-	rlk  sync.Mutex
 	root *tree.BackoffTreeTimer
 }
 
