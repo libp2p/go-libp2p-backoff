@@ -24,7 +24,7 @@ require (
 	github.com/multiformats/go-multistream v0.1.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/stretchr/testify v1.6.1 // indirect
-	golang.org/x/sys v0.0.0-20200202164722-d101bd2416d5 // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/tools v0.0.0-20191108193012-7d206e10da11 // indirect
 )
 
@@ -50,5 +50,5 @@ require (
 	go.uber.org/atomic v1.6.0 // indirect
 	go.uber.org/multierr v1.5.0 // indirect
 	go.uber.org/zap v1.14.1 // indirect
-	golang.org/x/crypto v0.0.0-20190618222545-ea8f1a30c443 // indirect
+	golang.org/x/crypto v0.1.0 // indirect
 )
