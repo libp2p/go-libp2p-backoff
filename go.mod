@@ -25,12 +25,11 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/stretchr/testify v1.6.1 // indirect
 	golang.org/x/sys v0.1.0 // indirect
-	golang.org/x/tools v0.0.0-20191108193012-7d206e10da11 // indirect
 )
 
 require (
 	github.com/btcsuite/btcd v0.20.1-beta // indirect
-	github.com/gogo/protobuf v1.3.1 // indirect
+	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/ipfs/go-cid v0.0.7 // indirect
 	github.com/ipfs/go-log/v2 v2.0.5 // indirect
 	github.com/libp2p/go-buffer-pool v0.0.2 // indirect
