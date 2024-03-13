@@ -1,6 +1,7 @@
 module github.com/libp2p/go-libp2p-backoff
 
-go 1.20
+go 1.21
+
 
 // This is https://github.com/libp2p/go-libp2p-core/pull/127
 require github.com/libp2p/go-libp2p-core v0.3.2-0.20200309235421-78ba12ebcdd4
