@@ -23,13 +23,12 @@ require (
 	github.com/multiformats/go-multiaddr-net v0.1.5 // indirect
 	github.com/multiformats/go-multistream v0.1.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/stretchr/testify v1.6.1 // indirect
+	github.com/stretchr/testify v1.7.0 // indirect
 	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/tools v0.0.0-20191108193012-7d206e10da11 // indirect
 )
 
 require (
-	github.com/btcsuite/btcd v0.20.1-beta // indirect
 	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/ipfs/go-cid v0.0.7 // indirect
 	github.com/ipfs/go-log/v2 v2.0.5 // indirect
